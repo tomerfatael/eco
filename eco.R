@@ -42,5 +42,7 @@ summary(lm)
 
 #q6
 q6_data <- subset(data, ageimmig <=10, yrimmig <= 2007, age >=14, age <=18)
+q6_data$tested[q6_data$elig == 1, q6_data$noncit == 1] <- "tested"
+q6_data$comparison[q6_data$elig == 0, q6_data$noncit == 0] <- "comparison"
 averages<-aggregate(inschool ~ elig+year, data=g6_data, mean)
 ggplot(data=averages, mapping = aes(x=year, y=inschool, color=elig))+ geom_line()
