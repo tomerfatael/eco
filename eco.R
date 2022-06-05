@@ -49,9 +49,6 @@ summary(model_nonfluent)
 model_singlemom<-lm(singlemom ~ treated, data=q3_data)
 summary(model_singlemom)
 
-model_incwage_pop<-lm(incwage_pop ~ treated, data=q3_data)
-summary(model_incwage_pop)
-
 model_fem<-lm(fem ~ treated, data=q3_data)
 summary(model_fem)
 
@@ -60,8 +57,8 @@ treated<-subset(q3_data, treated_or_comparison=="treated")
 comparison<-subset(q3_data, treated_or_comparison=="comparison")
 
 #q4
-data_before_DACA<-subset(part_b_data, post==0)
-lm<-lm(hs ~ nsibs + inpov + any_col + nonfluent + ageimmig + mompresent + dadpresent + noncit, data=data_before_DACA)
+q4_data<-subset(part_b_data, post==0)
+lm<-lm(hs ~ nsibs + inpov + any_col + ageimmig + nonfluent + singlemom  + fem + noncit, data=q4_data)
 summary(lm)
 
 
