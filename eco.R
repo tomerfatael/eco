@@ -40,9 +40,13 @@ data_before_DACA<-subset(data, post==0)
 lm<-lm(hs ~ nsibs + inpov + any_col + nonfluent + ageimmig + mompresent + dadpresent + noncit, data=data_before_DACA)
 summary(lm)
 
+
 #q6
-q6_data <- subset(data, ageimmig <=10, yrimmig <= 2007, age >=14, age <=18)
-q6_data$tested[q6_data$elig == 1, q6_data$noncit == 1] <- "tested"
-q6_data$comparison[q6_data$elig == 0, q6_data$noncit == 0] <- "comparison"
-averages<-aggregate(inschool ~ elig+year, data=g6_data, mean)
-ggplot(data=averages, mapping = aes(x=year, y=inschool, color=elig))+ geom_line()
+q6_data <- subset(data, ageimmig<=10 & yrimmig<=2007 & age<=18 & age>=14)
+q6_data$tested_or_comparison[q6_data$elig == 1 & q6_data$noncit == 1] <- "tested"
+q6_data$tested_or_comparison[q6_data$elig == 0 & q6_data$noncit == 0] <- "comparison"
+q6_graph<-aggregate(inschool ~ tested_or_comparison+year, data=q6_data, mean)
+ggplot(data=q6_graph, mapping = aes(x=year, y=inschool, color=tested_or_comparison))+geom_line()
+
+#q7
+
