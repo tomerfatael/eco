@@ -20,6 +20,4 @@ data_before_DACA<-subset(data, post==0)
 lm<-lm(hs ~ nsibs + inpov + any_col + nonfluent + ageimmig + mompresent + dadpresent + noncit, data=data_before_DACA)
 summary(lm)
 
-aviIsTheBest <- 5
-
 
