@@ -25,18 +25,39 @@ part_b_data$treated_or_comparison[part_b_data$elig == 1 & part_b_data$noncit == 
 part_b_data$treated_or_comparison[part_b_data$elig == 0 & part_b_data$noncit == 0]<-"comparison"
 
 #q3
-eligible<-subset(data, elig==1)
-famsize_avg<-mean(eligible$famsize)
-inpov_avg<-mean(eligible$inpov)
-any_col_avg<-mean(eligible$any_col)
-nonfluent_avg<-mean(eligible$nonfluent)
+q3_data<-subset(part_b_data, post==0) # post==0 filtering the years before DACA started
+q3_data$treated[q3_data$treated_or_comparison == "treated"]<-1
+q3_data$treated[q3_data$treated_or_comparison == "comparison"]<-0
+q3_data$incwage_pop[is.na(q3_data$incwage_pop)] = 0
 
-not_eligible<-subset(data, noncit==0)
-famsize_avg<-mean(not_eligible$famsize)
-inpov_avg<-mean(not_eligible$inpov)
-any_col_avg<-mean(not_eligible$any_col)
-nonfluent_avg<-mean(not_eligible$nonfluent)
+# treated group
+model_nsibs<-lm(nsibs ~ treated, data=q3_data)
+summary(model_nsibs)
 
+model_inpov<-lm(inpov ~ treated, data=q3_data)
+summary(model_inpov)
+
+model_any_col<-lm(any_col ~ treated, data=q3_data)
+summary(model_any_col)
+
+model_ageimmig<-lm(ageimmig ~ treated, data=q3_data)
+summary(model_ageimmig)
+
+model_nonfluent<-lm(nonfluent ~ treated, data=q3_data)
+summary(model_nonfluent)
+
+model_singlemom<-lm(singlemom ~ treated, data=q3_data)
+summary(model_singlemom)
+
+model_incwage_pop<-lm(incwage_pop ~ treated, data=q3_data)
+summary(model_incwage_pop)
+
+model_fem<-lm(fem ~ treated, data=q3_data)
+summary(model_fem)
+
+# counting num of observations
+treated<-subset(q3_data, treated_or_comparison=="treated")
+comparison<-subset(q3_data, treated_or_comparison=="comparison")
 
 #q4
 data_before_DACA<-subset(part_b_data, post==0)
