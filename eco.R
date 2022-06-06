@@ -73,4 +73,8 @@ q7_data<-subset(part_b_data, age<=22 & age>=19)
 q7_graph<-aggregate(hs ~ treated_or_comparison+year, data=q7_data, mean)
 ggplot(data=q7_graph, mapping = aes(x=year, y=hs, color=treated_or_comparison))+geom_line()
 
-
+#q11
+treated_and_before<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "treated" & part_b_data$post == 0 & part_b_data$age <= 22 & part_b_data$age >= 19])
+treated_and_after<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "treated" & part_b_data$post == 1 & part_b_data$age <= 22 & part_b_data$age >= 19])
+comparison_and_before<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "comparison" & part_b_data$post == 0 & part_b_data$age <= 22 & part_b_data$age >= 19])
+comparison_and_after<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "comparison" & part_b_data$post == 1 & part_b_data$age <= 22 & part_b_data$age >= 19])
