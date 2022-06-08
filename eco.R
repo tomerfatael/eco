@@ -78,3 +78,8 @@ treated_and_before<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "tr
 treated_and_after<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "treated" & part_b_data$post == 1 & part_b_data$age <= 22 & part_b_data$age >= 19])
 comparison_and_before<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "comparison" & part_b_data$post == 0 & part_b_data$age <= 22 & part_b_data$age >= 19])
 comparison_and_after<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "comparison" & part_b_data$post == 1 & part_b_data$age <= 22 & part_b_data$age >= 19])
+
+#q12
+q12_data<-subset(part_b_data, age<=22 & age>=19)
+
+
