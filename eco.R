@@ -81,5 +81,11 @@ comparison_and_after<-mean(part_b_data$hs[part_b_data$treated_or_comparison == "
 
 #q12
 q12_data<-subset(part_b_data, age<=22 & age>=19)
+q12_model<-lm(hs ~ elig + post + elig*post, data=q12_data)
+summary(q12_model)
 
-
+#q14
+q12_data$residuals<-q12_model$residuals
+q12_data$residuals_squared<-q12_data$residuals^2
+q14_model<-lm(residuals_squared ~ elig + post + elig*post, data=q12_data)
+summary(q14_model)
