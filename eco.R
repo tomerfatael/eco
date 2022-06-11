@@ -92,7 +92,7 @@ summary(q14_model)
 coeftest(q14_model, vcov = vcovHC(q14_model, type="HC1"))
 
 #q15
-q15_model = lm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post + , data=q12_data)
+q15_model = lm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
 summary(q15_model)
 q15_model_effects = plm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post + factor(statefib), index="state", model="within", data=q12_data)
 summary(q15_model_effects)
