@@ -89,3 +89,10 @@ q12_data$residuals<-q12_model$residuals
 q12_data$residuals_squared<-q12_data$residuals^2
 q14_model<-lm(residuals_squared ~ elig + post + elig*post, data=q12_data)
 summary(q14_model)
+coeftest(q14_model, vcov = vcovHC(q14_model, type="HC1"))
+
+#q15
+q15_model = lm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
+summary(q15_model)
+q12_data$residuals_squared_full = q15_model$residuals^2
+coeftest(q15_model, vcov = vcovHC(q15_model, type="HC1"))
