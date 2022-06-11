@@ -92,10 +92,14 @@ summary(q14_model)
 coeftest(q12_model, vcov = vcovHC(q12_model, type="HC1"))
 
 #q15
-q15_model = lm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
+q15_model<-lm(hs ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
 summary(q15_model)
 q12_data$residuals_squared_full = q15_model$residuals^2
-q15_model_check = lm(residuals_squared_full ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
+q15_model_check<-lm(residuals_squared_full ~ elig + post + nsibs + any_col + ageimmig + singlemom + fem + elig*post, data=q12_data)
 summary(q15_model_check)
 coeftest(q15_model, vcov = vcovHC(q15_model, type="HC1"))
 
+#part c
+part_c_data<-subset(data, noncit==1)
+mean(part_c_data$nonfluent[part_c_data$ageimmig>=16 & part_c_data$elig==0])
+mean(part_c_data$nonfluent[part_c_data$ageimmig<16 & part_c_data$elig==1])
